@@ -8,3 +8,6 @@ ENV MYSQL_DATABASE=laravel \
 
 COPY ./my.cnf /etc/my.cnf
 RUN chmod 644 /etc/my.cnf
+
+# Mysql接続
+# mysql --host=localhost --user=phper --password=secret laravel
