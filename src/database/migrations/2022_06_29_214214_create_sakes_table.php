@@ -17,7 +17,7 @@ return new class extends Migration
             $table->id();
             $table->string('sake_name', 128);
             $table->string('kuramoto', 128);
-            $table->string('prefectur', 5);
+            $table->string('prefecture', 5);
             $table->boolean('deleted')->default(false);
             $table->timestamps();
         });
