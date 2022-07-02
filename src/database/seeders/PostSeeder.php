@@ -19,9 +19,9 @@ class PostSeeder extends Seeder
     {
         for($i=1; $i<11; $i++){
             DB::table('posts')->insert([
-                'user_id' => User::find($i)->id,
+                'user_id' => User::inRandomOrder()->first()->id,
                 'sake_id' => Sake::inRandomOrder()->first()->id,
-                'content' => 'これはダミー文章です。',
+                'content' => 'これはダミー文章'.$i.'です。',
                 'created_at' => Carbon::now(),
                 'updated_at' => Carbon::now()
             ]);
