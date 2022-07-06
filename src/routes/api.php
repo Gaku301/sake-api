@@ -22,4 +22,5 @@ use Illuminate\Support\Facades\Route;
 
 Route::prefix('v1')->controller(ApiController::class)->group(function() {
     Route::get('/index', 'index');
+    Route::get('/user/{user_id}', 'getUserInfo');
 });
