@@ -19,6 +19,9 @@ class ApiController extends Controller
         try {
             // Get all post with user_name
             $posts = Post::addSelect([
+                'user_disp_id' => User::select('user_id')
+                    ->whereColumn('id', 'posts.user_id')
+                    ->limit(1),
                 'user_name' => User::select('user_name')
                     ->whereColumn('id', 'posts.user_id')
                     ->limit(1),
@@ -61,13 +64,12 @@ class ApiController extends Controller
             ])->first();
 
             // Get posts the user have
-            $posts = $user->posts;
+            $user->posts;
             $result = [
                 'status' => true,
                 'message' => 'Success',
                 'result' => [
                     'user' => $user,
-                    'posts' => $posts
                 ]
             ];
         } catch (Exception $e) {
