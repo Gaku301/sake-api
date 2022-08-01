@@ -9,6 +9,8 @@ use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
 
+use function PHPSTORM_META\type;
+
 class ApiController extends Controller
 {
     /**
@@ -84,5 +86,39 @@ class ApiController extends Controller
         }
 
         return response()->json($result);
+    }
+
+    /**
+     * Save sake datas from Python
+     * @param Request $request
+     */
+    public function saveSakeDatas(Request $request)
+    {
+        if(empty($request)) {
+            throw new Exception();
+        }
+
+        $sake_info = $request->sake_info;    
+        foreach($sake_info as $prefecture => $kuramotos)
+        {
+            foreach($kuramotos as $kuramoto => $sakes)
+            {
+                foreach($sakes as $sake_name)
+                {
+                    try {
+                        $sake = new Sake;
+                        $sake->fill([
+                            'sake_name' => $sake_name,
+                            'kuramoto' => $kuramoto,
+                            'prefecture' => $prefecture
+                        ]);
+                        $sake->save();
+                    } catch(Exception $e) {
+                        Log::error(__METHOD__. ' Exception Error');
+                        Log::error($e->getMessage());
+                    }
+                }
+            }
+        }
     }
 }

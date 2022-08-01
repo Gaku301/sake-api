@@ -18,7 +18,7 @@ return new class extends Migration
             $table->string('sake_name', 128);
             $table->string('kuramoto', 128);
             $table->string('prefecture', 5);
-            $table->boolean('deleted')->default(false);
+            $table->softDeletes();
             $table->timestamps();
         });
     }
