@@ -1,7 +1,6 @@
 <?php
 
 use App\Http\Controllers\ApiController;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -23,4 +22,6 @@ use Illuminate\Support\Facades\Route;
 Route::prefix('v1')->controller(ApiController::class)->group(function() {
     Route::get('/index', 'index');
     Route::get('/user/{user_id}', 'getUserInfo');
+    // Save sake datas from Python
+    Route::post('/sake_info', 'saveSakeDatas');
 });

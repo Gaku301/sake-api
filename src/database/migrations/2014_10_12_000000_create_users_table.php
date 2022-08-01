@@ -23,7 +23,7 @@ return new class extends Migration
             $table->rememberToken();
             $table->string('country');
             $table->date('birthday');
-            $table->boolean('deleted')->default(false);
+            $table->softDeletes();
             $table->timestamps();
         });
     }

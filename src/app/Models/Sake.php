@@ -8,4 +8,6 @@ use Illuminate\Database\Eloquent\Model;
 class Sake extends Model
 {
     use HasFactory;
+
+    protected $fillable = ['sake_name', 'kuramoto', 'prefecture'];
 }
